@@ -1,0 +1,60 @@
+---
+
+- name: Create dotfiles folder
+  file:
+    path: "/home/{{ username }}/dotfiles"
+    state: directory
+
+- name: Create dircolors in dotfiles
+  file:
+    path: "/home/{{ username }}/dotfiles/dircolors"
+    state: directory 
+
+- name: Get dircolors.256dark
+  get_url:
+    url: https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
+    dest: "/home/{{ username }}/dotfiles/dircolors/dircolors.256dark"
+
+- name: Copy zsh files
+  copy:
+    src: zsh
+    dest: "/home/{{ username }}/dotfiles"
+
+- name: Create vim directory
+  file:
+    path: "/home/{{ username }}/dotfiles/vim"
+    state: directory
+
+- name: Copy vimrc
+  copy:
+    src: vimrc
+    dest: "/home/{{ username }}/dotfiles/vim/vimrc"
+
+- name: Copy tmux.conf
+  copy:
+    src: tmux.conf
+    dest: "/home/{{ username }}/dotfiles/tmux.conf"
+
+- name: Create vim dir symlink
+  file:
+    state: link
+    src: "/home/{{ username }}/dotfiles/vim"
+    dest: "/home/{{ username }}/.vim"
+
+- name: Create vimrc symlink
+  file:
+    state: link
+    src: "/home/{{ username }}/dotfiles/vim/vimrc"
+    dest: "/home/{{ username }}/.vimrc"
+
+- name: Create zshrc symlink
+  file:
+    state: link
+    src: "/home/{{ username }}/dotfiles/zsh/zshrc"
+    dest: "/home/{{ username }}/.zshrc"
+
+- name: Create tmux symlink
+  file:
+    state: link
+    src: "/home/{{ username }}/dotfiles/tmux.conf"
+    dest: "/home/{{ username }}/.tmux.conf"

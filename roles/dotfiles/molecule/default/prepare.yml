@@ -1,0 +1,14 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: create user
+      user:
+        name: testuser
+        state: present
+    - name: Create user dir
+      file:
+        name: /home/testuser
+        state: directory
