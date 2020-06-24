@@ -1,3 +1,8 @@
+# My notes
+
+This runs as your username (change it in group_vars/all.yml), but you have to be able to sudo.  Give your password to ansible with `--extra-vars "ansible_sudo_pass=yourPassword"`. Or passwordless sudo. Either one.
+
+
 # Ansible-Boilerplate
 
 [![GitHub Issues](https://img.shields.io/github/issues/acch/ansible-boilerplate.svg)](https://github.com/acch/ansible-boilerplate/issues) [![GitHub Stars](https://img.shields.io/github/stars/acch/ansible-boilerplate.svg?label=github%20%E2%98%85)](https://github.com/acch/ansible-boilerplate/) [![License](https://img.shields.io/github/license/acch/ansible-boilerplate.svg)](LICENSE)

@@ -1,0 +1,49 @@
+---
+
+- name: Install pre-reqs
+  apt:
+    name: "{{ pre_reqs }}"
+    state: present
+
+- name: Add docker repo key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+
+- name: Add vscode repo key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add vscode repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+
+- name: Install packages
+  apt:
+    name: "{{ packages }}"
+    state: latest
+
+- name: Set default shell 
+  user:
+    name: brewneaux
+    shell: /bin/zsh
+
+- name: Add {{ username }} to docker group
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+
+- name: Install vundle
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
+  
+- name: Install vundle plugins
+  shell: "vim -E -s -c 'source {{ ansible_env.HOME }}/.vimrc' -c PluginInstall -c qa"
+  ignore_errors: yes

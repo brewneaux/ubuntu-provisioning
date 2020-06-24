@@ -1,0 +1,26 @@
+---
+pre_reqs:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg-agent
+  - software-properties-common
+
+
+packages:
+  - htop
+  - tmux
+  - vim
+  - jq
+  - gnome-tweak-tool
+  - zsh
+  - python3-pip
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - easystroke
+  - code
+  - google-chrome-stable
+  - kubectl
+  - silversearcher-ag
+  

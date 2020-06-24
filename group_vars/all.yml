@@ -1,7 +1,7 @@
 ---
 # Default is to log in as root
-ansible_user: root
-remote_user: root
+ansible_user: brewnweaux
+remote_user: brewneaux
 
 # Add further variables which apply to all servers to this file...
 username: brewneaux

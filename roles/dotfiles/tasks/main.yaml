@@ -2,59 +2,59 @@
 
 - name: Create dotfiles folder
   file:
-    path: "/home/{{ username }}/dotfiles"
+    path: "{{ ansible_env.HOME }}/dotfiles"
     state: directory
 
 - name: Create dircolors in dotfiles
   file:
-    path: "/home/{{ username }}/dotfiles/dircolors"
+    path: "{{ ansible_env.HOME }}/dotfiles/dircolors"
     state: directory 
 
 - name: Get dircolors.256dark
   get_url:
     url: https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
-    dest: "/home/{{ username }}/dotfiles/dircolors/dircolors.256dark"
+    dest: "{{ ansible_env.HOME }}/dotfiles/dircolors/dircolors.256dark"
 
 - name: Copy zsh files
   copy:
     src: zsh
-    dest: "/home/{{ username }}/dotfiles"
+    dest: "{{ ansible_env.HOME }}/dotfiles"
 
 - name: Create vim directory
   file:
-    path: "/home/{{ username }}/dotfiles/vim"
+    path: "{{ ansible_env.HOME }}/dotfiles/vim"
     state: directory
 
 - name: Copy vimrc
   copy:
     src: vimrc
-    dest: "/home/{{ username }}/dotfiles/vim/vimrc"
+    dest: "{{ ansible_env.HOME }}/dotfiles/vim/vimrc"
 
 - name: Copy tmux.conf
   copy:
     src: tmux.conf
-    dest: "/home/{{ username }}/dotfiles/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/dotfiles/tmux.conf"
 
 - name: Create vim dir symlink
   file:
     state: link
-    src: "/home/{{ username }}/dotfiles/vim"
-    dest: "/home/{{ username }}/.vim"
+    src: "{{ ansible_env.HOME }}/dotfiles/vim"
+    dest: "{{ ansible_env.HOME }}/.vim"
 
 - name: Create vimrc symlink
   file:
     state: link
-    src: "/home/{{ username }}/dotfiles/vim/vimrc"
-    dest: "/home/{{ username }}/.vimrc"
+    src: "{{ ansible_env.HOME }}/dotfiles/vim/vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
 
 - name: Create zshrc symlink
   file:
     state: link
-    src: "/home/{{ username }}/dotfiles/zsh/zshrc"
-    dest: "/home/{{ username }}/.zshrc"
+    src: "{{ ansible_env.HOME }}/dotfiles/zsh/zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: Create tmux symlink
   file:
     state: link
-    src: "/home/{{ username }}/dotfiles/tmux.conf"
-    dest: "/home/{{ username }}/.tmux.conf"
+    src: "{{ ansible_env.HOME }}/dotfiles/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
